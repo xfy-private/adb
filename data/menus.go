@@ -23,6 +23,15 @@ var (
 		"screencap":    {"屏幕截图", "tool", menus.ScreencapView},
 		"screenrecord": {"录制屏幕", "tool", menus.ScreenrecordView},
 
+		"app":         {"应用管理", "root", menus.AppView},
+		"list-app":    {"应用列表", "app", menus.AppListView},
+		"install-app": {"安装应用", "app", menus.InstallAppView},
+		// "uninstall-app": {"卸载应用", "app", menus.UninstallAppView},
+		// "clear-app":     {"清除数据", "app", menus.ClearAppView},
+		// "services-app":  {"查看Services", "app", menus.ServicesAppView},
+		// "info-app":      {"应用详细信息", "app", menus.InfoAppView},
+		// "path-app":      {"应用安装路径", "app", menus.PathAppView},
+
 		"logcat":        {"日志管理", "root", menus.LogcatView},
 		"config-logcat": {"日志配置", "logcat", menus.ConfigLogcatView},
 		"clear-logcat":  {"清空日志", "logcat", menus.ClearLogcat},
@@ -30,15 +39,6 @@ var (
 		"file-logcat":   {"输出到文件", "logcat", menus.FileLogcatView},
 		"buffer-logcat": {"缓冲区查看", "logcat", menus.BufferLogcatView},
 		"dmesg-logcat":  {"内核日志", "logcat", menus.DmesgLogcatView},
-
-		"app":           {"应用管理", "root", menus.AppView},
-		"list-app":      {"应用列表", "app", menus.AppListView},
-		"install-app":   {"安装应用", "app", menus.InstallAppView},
-		"uninstall-app": {"卸载应用", "app", menus.UninstallAppView},
-		"clear-app":     {"清除数据", "app", menus.ClearAppView},
-		"services-app":  {"查看Services", "app", menus.ServicesAppView},
-		"info-app":      {"应用详细信息", "app", menus.InfoAppView},
-		"path-app":      {"应用安装路径", "app", menus.PathAppView},
 
 		"file":       {"文件管理", "root", menus.FileView},
 		"pull-file":  {"下载文件", "file", menus.PullFileView},
@@ -66,8 +66,8 @@ var (
 		"ip-netstat":     {"网络操作", "netstat", menus.IpNetstatView},
 	}
 	MenuIndex = map[string][]string{
-		"":         {"info", "input", "tool", "logcat", "app", "file", "interact", "netstat"},
-		"app":      {"list-app", "install-app", "uninstall-app", "clear-app", "services-app", "info-app", "path-app"},
+		"":         {"info", "input", "tool", "app", "logcat", "file", "interact", "netstat"},
+		"app":      {"list-app", "install-app"},
 		"interact": {"start", "startservice", "stopservice", "broadcast", "force-stop", "send-trim-memory"},
 		"file":     {"pull-file", "push-file", "ls-file", "cd-file", "rm-file", "mkdir-file", "touch-file", "cp-file", "mv-file"},
 		"netstat":  {"info-netstat", "ping-netstat", "netcfg-netstat", "ip-netstat"},

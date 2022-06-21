@@ -14,6 +14,16 @@ import (
 	"syscall"
 )
 
+var (
+	AdbPath = ""
+)
+
+type Command struct {
+	cmd       *exec.Cmd
+	exitCode  int
+	errOutput string
+}
+
 func getCmd(arg ...string) *exec.Cmd {
 	if runtime.GOOS == "linux" {
 		return exec.Command("bash", "-c", strings.Join(arg, " "))
@@ -43,19 +53,27 @@ func NewScrcpy(arg ...string) *Command {
 			cmd: cmd,
 		}
 	}
+	tool.Error(err, 1)
 	return nil
 }
 
 func (c *Command) SyncRun() error {
-	return c.cmd.Run()
+	err := c.cmd.Run()
+	tool.Error(err, 1)
+	return err
 }
 
 func (c *Command) SyncReadString() string {
 	byt, err := c.cmd.CombinedOutput()
 	if err != nil {
+		tool.Error(err, 1)
 		return err.Error()
 	}
 	return tool.ConvertByte2String(byt)
+}
+
+func (c *Command) String() string {
+	return c.cmd.String()
 }
 
 func (c *Command) Start(cb func(line string, err error)) {
@@ -110,14 +128,16 @@ func (c *Command) read(in io.ReadCloser, cb func(line string, err error)) {
 }
 
 func (c *Command) Quit() error {
+	var err error
 	if c.cmd.Process != nil {
 		if runtime.GOOS == "linux" {
-			return c.cmd.Process.Kill()
+			err = c.cmd.Process.Kill()
 		}
 		if runtime.GOOS == "windows" {
 			maxCloseC := exec.Command("taskkill.exe", "/pid", fmt.Sprintf("%d", c.cmd.Process.Pid), "-t", "-f")
-			return maxCloseC.Run()
+			err = maxCloseC.Run()
 		}
 	}
-	return nil
+	tool.Error(err, 1)
+	return err
 }

@@ -154,18 +154,20 @@ func Refresh(w fyne.Window, btn *widget.Button) {
 }
 
 func Unlock(w fyne.Window, btn *widget.Button) {
-	if selects.Disabled() && len(selects.Options) > 0 {
-		btn.Disable()
-		dialog.NewConfirm("提示", "确定解除设备列表锁定？", func(b bool) {
-			if b {
-				selects.Enable()
-				selects.Refresh()
-				btn.Enable()
-			} else {
-				btn.Enable()
-			}
-		}, w).Show()
+	btn.Disable()
+	if Device == "" {
+		fyne.CurrentApp().SendNotification(&fyne.Notification{
+			Title:   "警告",
+			Content: "没有选择操作设备",
+		})
+	} else {
+		err := cmd.New("-s", Device, "shell", "input", "keyevent", "224").SyncRun()
+		if err == nil {
+			time.Sleep(100 * time.Millisecond)
+			cmd.New("-s", Device, "shell", "input", "swipe", "300", "1000", "300", " 500").SyncRun()
+		}
 	}
+	btn.Enable()
 }
 
 func Resat() {

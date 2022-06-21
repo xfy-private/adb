@@ -33,6 +33,7 @@ var charsetMap = map[string]int{
 }
 
 func init() {
+	cmd.AdbPath = filepath.Join("adb-tool", "adb.exe")
 	fontPaths := findfont.List()
 	for _, path := range fontPaths {
 		if strings.Contains(path, "simkai.ttf") || strings.Contains(path, "simhei.ttf") {

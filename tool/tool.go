@@ -2,10 +2,12 @@ package tool
 
 import (
 	"errors"
+	"fmt"
 	"net"
 	"os"
 	"path/filepath"
 	"regexp"
+	"runtime"
 	"strings"
 	"unsafe"
 
@@ -88,4 +90,26 @@ func ConvertByte2String(byte []byte) string {
 		str = string(byte)
 	}
 	return str
+}
+
+func Error(err error, skip int) {
+	if err != nil {
+		_, file, line, ok := runtime.Caller(skip)
+		if ok {
+			fmt.Printf("ERROR: %s:%d  %s\n", file, line, err.Error())
+		}
+	}
+}
+
+func IfThree[T any](condition bool, trueVal T, falseVal T) T {
+	if condition {
+		return trueVal
+	}
+	return falseVal
+}
+
+func MatchOne(text, pattern string) []string {
+	re := regexp.MustCompile(pattern)
+	value := re.FindStringSubmatch(text)
+	return value
 }

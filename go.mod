@@ -3,10 +3,10 @@ module adb
 go 1.18
 
 require (
-	fyne.io/fyne/v2 v2.1.4 // indirect
-	fyne.io/systray v1.9.1-0.20220523202515-bb6f1d955cff // indirect
+	fyne.io/fyne/v2 v2.2.1 // indirect
+	fyne.io/systray v1.10.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/disintegration/gift v1.1.2 // indirect
+	github.com/disintegration/gift v1.2.1 // indirect
 	github.com/disintegration/imageorient v0.0.0-20180920195336-8147d86e83ec // indirect
 	github.com/flopp/go-findfont v0.1.0 // indirect
 	github.com/fredbi/uri v0.0.0-20181227131451-3dcfdacbaaf3 // indirect
@@ -23,13 +23,14 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/srwiley/oksvg v0.0.0-20200311192757-870daf9aa564 // indirect
 	github.com/srwiley/rasterx v0.0.0-20200120212402-85cb7272f5e9 // indirect
-	github.com/stretchr/testify v1.7.1 // indirect
+	github.com/stretchr/testify v1.7.2 // indirect
+	github.com/tevino/abool v1.2.0 // indirect
 	github.com/yuin/goldmark v1.4.0 // indirect
 	golang.org/x/image v0.0.0-20220601225756-64ec528b34cd // indirect
 	golang.org/x/mobile v0.0.0-20211207041440-4e6c2922fdee // indirect
 	golang.org/x/net v0.0.0-20210805182204-aaa1db679c0d // indirect
 	golang.org/x/sys v0.0.0-20220412211240-33da011f77ad // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 	honnef.co/go/js/dom v0.0.0-20210725211120-f030747120f2 // indirect
 )
